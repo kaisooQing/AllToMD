@@ -1,0 +1,21 @@
+# ============================================================
+# AllToMD - Python Dependencies
+# ============================================================
+# Install command: pip install -r requirements.txt
+#
+# Notes:
+#   - Python 3.10 required
+#   - CUDA 11.8+ recommended for GPU acceleration
+#   - Run `playwright install chromium` after installing playwright
+# ============================================================
+
+# --- MinerU Core (editable install from local source) ---
+-e MinerU[core]
+
+# --- AllToMD Additional Dependencies ---
+# URL/HTML conversion & anti-bot
+curl_cffi
+markdownify
+
+# Browser automation (for cookie capture & JS rendering)
+playwright
