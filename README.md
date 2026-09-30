@@ -150,7 +150,7 @@ Markdown 渲染 / 原文 / JSON 三种视图
 ### 1 · 克隆仓库
 
 ```bash
-git clone https://github.com/<your-username>/AllToMD.git
+git clone https://github.com/kaisooQing/AllToMD.git
 cd AllToMD
 ```
 
@@ -526,6 +526,6 @@ set MODELSCOPE_CACHE=..\model_cache
 
 <br/>
 
-<sub>by <a href="https://github.com/<your-username>">王小氢</a></sub>
+<sub>by <a href="https://github.com/kaisooQing">王小氢</a></sub>
 
 </div>
