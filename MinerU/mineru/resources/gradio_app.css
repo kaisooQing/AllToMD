@@ -1,0 +1,1908 @@
+﻿/* ============================================================
+   AllToMD Gradio App – Modern SaaS theme
+   Override Gradio defaults with high-specificity selectors + !important
+   Product: AllToMD – Document-to-Markdown conversion tool
+   ============================================================ */
+
+/* Prevent whole-page scrolling; panels scroll internally */
+html,
+body {
+    overflow: hidden !important;
+    height: 100% !important;
+}
+
+/* Main layout: header fixed, workspace fills remaining viewport */
+.gradio-container .main.fillable > .wrap.svelte-zxu34v > .contain.svelte-zxu34v > .column.svelte-siq5d6 {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+}
+
+.gradio-container .main.fillable > .wrap.svelte-zxu34v > .contain.svelte-zxu34v > .column.svelte-siq5d6 > .block.mineru-header-html {
+    flex: none !important;
+}
+
+.gradio-container .main.fillable > .wrap.svelte-zxu34v > .contain.svelte-zxu34v > .column.svelte-siq5d6 > .row.mineru-workspace-row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* ================================================================
+   1. CSS VARIABLES
+   ================================================================ */
+.gradio-container {
+    /* Brand / Accent — Indigo */
+    --mineru-accent: #4f46e5;
+    --mineru-accent-hover: #4338ca;
+    --mineru-accent-soft: #eef2ff;
+    --mineru-accent-muted: rgba(79, 70, 229, 0.12);
+
+    /* Backgrounds */
+    --mineru-bg: #f8fafc;
+    --mineru-bg-white: #ffffff;
+
+    /* Text */
+    --mineru-text-primary: #0f172a;
+    --mineru-text-secondary: #64748b;
+    --mineru-text-tertiary: #94a3b8;
+
+    /* Borders */
+    --mineru-border: #e2e8f0;
+    --mineru-border-light: #f1f5f9;
+
+    /* Sidebar */
+    --mineru-sidebar-bg: #fafbfd;
+    --mineru-sidebar-width: 220px;
+
+    /* Radii */
+    --mineru-radius: 10px;
+    --mineru-radius-sm: 8px;
+    --mineru-radius-lg: 14px;
+
+    /* Heights */
+    --mineru-preview-content-height: min(320px, 32vh);
+    --mineru-pdf-page-height: min(280px, 28vh);
+    --mineru-markdown-text-content-height: var(--mineru-preview-content-height);
+
+    /* Panel */
+    --mineru-panel: #ffffff;
+    --mineru-panel-border: transparent;
+    --mineru-status-panel-bg: #ffffff;
+    --mineru-status-latest-border: #e2e8f0;
+    --mineru-status-latest-text: #475569;
+
+    /* Popover */
+    --mineru-popover-border: #e2e8f0;
+    --mineru-popover-shell-bg: rgba(255, 255, 255, 0.97);
+    --mineru-popover-card-bg: #ffffff;
+    --mineru-popover-shadow:
+        0 20px 48px rgba(15, 23, 42, 0.12),
+        0 8px 20px rgba(15, 23, 42, 0.06),
+        0 0 0 1px rgba(15, 23, 42, 0.04);
+    --mineru-popover-dropdown-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+}
+
+@media (prefers-color-scheme: light) {
+    .gradio-container {
+        --mineru-panel: #ffffff;
+        --mineru-panel-border: transparent;
+        --mineru-status-panel-bg: #ffffff;
+        --mineru-status-latest-border: #e2e8f0;
+        --mineru-status-latest-text: #475569;
+        --mineru-popover-border: #e2e8f0;
+        --mineru-popover-shell-bg: rgba(255, 255, 255, 0.97);
+        --mineru-popover-card-bg: #ffffff;
+        --mineru-popover-shadow:
+            0 20px 48px rgba(15, 23, 42, 0.12),
+            0 8px 20px rgba(15, 23, 42, 0.06),
+            0 0 0 1px rgba(15, 23, 42, 0.04);
+        --mineru-popover-dropdown-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+    }
+}
+
+/* ================================================================
+   DARK MODE
+   ================================================================ */
+body.dark .gradio-container {
+    --mineru-accent: #818cf8;
+    --mineru-accent-hover: #a5b4fc;
+    --mineru-accent-soft: rgba(99, 102, 241, 0.12);
+    --mineru-accent-muted: rgba(129, 140, 248, 0.18);
+    --mineru-bg: #0b0f1a;
+    --mineru-bg-white: #111827;
+    --mineru-text-primary: #e2e8f0;
+    --mineru-text-secondary: #94a3b8;
+    --mineru-text-tertiary: #64748b;
+    --mineru-border: rgba(148, 163, 184, 0.12);
+    --mineru-border-light: rgba(148, 163, 184, 0.07);
+    --mineru-sidebar-bg: rgba(148, 163, 184, 0.04);
+    --mineru-panel: rgba(148, 163, 184, 0.05);
+    --mineru-panel-border: transparent;
+    --mineru-status-panel-bg: rgba(0, 0, 0, 0.22);
+    --mineru-status-latest-border: var(--mineru-panel-border);
+    --mineru-status-latest-text: var(--body-text-color-subdued);
+    --mineru-popover-border: rgba(148, 163, 184, 0.10);
+    --mineru-popover-shell-bg: linear-gradient(
+        135deg,
+        rgba(148, 163, 184, 0.18),
+        rgba(148, 163, 184, 0.05) 44%,
+        rgba(99, 102, 241, 0.12)
+    );
+    --mineru-popover-card-bg: linear-gradient(
+        180deg,
+        rgba(17, 24, 39, 0.98),
+        rgba(15, 23, 42, 0.95)
+    );
+    --mineru-popover-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.40),
+        0 0 0 1px rgba(148, 163, 184, 0.06) inset;
+    --mineru-popover-dropdown-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+}
+
+/* ================================================================
+   2. GLOBAL GRADIO OVERRIDES
+   ================================================================ */
+
+/* 2a. Hide Gradio footer */
+.gradio-footer,
+.gradio-container .gradio-footer,
+.gradio-container footer,
+.gradio-container > .footer {
+    display: none !important;
+}
+
+/* 2b. Strip container default margins */
+.gradio-container {
+    background: var(--mineru-bg) !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 2c. Clear nested top spacing */
+.gradio-container .contain,
+.gradio-container .main,
+.gradio-container > .main,
+.gradio-container > .main > .wrap,
+.gradio-container > .main > .wrap > .gradio-columns,
+.gradio-container > .main > .wrap > .gradio-rows {
+    gap: 0 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 2d. Strip default panel chrome */
+.gradio-container .gr-panel,
+.gradio-container [data-testid="panel"],
+.gradio-container .panel {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* 2e. Strip block labels */
+.gradio-container label[data-testid="block-label"],
+.gradio-container .block-label,
+.gradio-container .block .label-wrap,
+.gradio-container .block .label,
+.gradio-container .gr-form .label-wrap,
+.gradio-container .gr-group > label:first-child {
+    display: none !important;
+}
+
+/* Preserve header-area labels */
+.gradio-container .mineru-header-html label[data-testid="block-label"],
+.gradio-container .mineru-header-html .block-label {
+    display: block !important;
+}
+
+/* 2f. Row / Column gap reset */
+.gradio-container .gr-row,
+.gradio-container .row {
+    gap: 0 !important;
+}
+
+.gradio-container .gr-column,
+.gradio-container .column {
+    gap: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2g. Form / group reset */
+.gradio-container .gr-form,
+.gradio-container .gr-group,
+.gradio-container .form,
+.gradio-container .group {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* 2h. Block padding reset */
+.gradio-container .block {
+    padding: 0 !important;
+}
+
+/* 2i. Accordion reset */
+.gradio-container .gr-accordion,
+.gradio-container details.gr-accordion {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 2j. Input / textarea styling */
+.gradio-container input[type="text"],
+.gradio-container input[type="number"],
+.gradio-container textarea,
+.gradio-container .gr-input,
+.gradio-container .gr-text-input,
+.gradio-container .gr-textbox {
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    background: var(--mineru-bg-white) !important;
+    box-shadow: none !important;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease !important;
+}
+
+.gradio-container input[type="text"]:focus,
+.gradio-container input[type="number"]:focus,
+.gradio-container textarea:focus,
+.gradio-container .gr-input:focus,
+.gradio-container .gr-text-input:focus {
+    border-color: var(--mineru-accent) !important;
+    box-shadow: 0 0 0 3px var(--mineru-accent-muted) !important;
+}
+
+/* 2k. Checkbox / Radio */
+.gradio-container .gr-checkbox,
+.gradio-container .gr-radio {
+    border: none !important;
+    background: transparent !important;
+    padding: 6px 0 !important;
+}
+
+/* 2l. Slider */
+.gradio-container .gr-slider {
+    padding: 8px 0 !important;
+}
+
+/* 2m. Dropdown */
+.gradio-container .gr-dropdown,
+.gradio-container .dropdown {
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    background: var(--mineru-bg-white) !important;
+}
+
+/* ================================================================
+   3. BUTTONS
+   ================================================================ */
+
+/* 3a. Base button style */
+.gradio-container button,
+.gradio-container .gr-button,
+.gradio-container .btn {
+    border: none !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition:
+        background 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.12s ease,
+        color 0.18s ease !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    background: #f1f5f9 !important;
+    color: var(--mineru-text-primary) !important;
+    padding: 9px 18px !important;
+    letter-spacing: 0.005em;
+}
+
+/* 3b. Primary button — indigo gradient */
+.gradio-container button.primary,
+.gradio-container .gr-button.primary,
+.gradio-container .btn-primary,
+.gradio-container button[variant="primary"],
+.gradio-container button.gr-button-primary {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.gradio-container button.primary:hover,
+.gradio-container .gr-button.primary:hover,
+.gradio-container .btn-primary:hover,
+.gradio-container button[variant="primary"]:hover,
+.gradio-container button.gr-button-primary:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
+    box-shadow:
+        0 4px 16px rgba(79, 70, 229, 0.35),
+        0 2px 6px rgba(79, 70, 229, 0.18) !important;
+    transform: translateY(-1px);
+}
+
+.gradio-container button.primary:active,
+.gradio-container .gr-button.primary:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28) !important;
+}
+
+/* 3c. Secondary / Stop button */
+.gradio-container button.secondary,
+.gradio-container .gr-button.secondary,
+.gradio-container .btn-secondary,
+.gradio-container button[variant="stop"] {
+    background: var(--mineru-bg-white) !important;
+    color: var(--mineru-text-primary) !important;
+    border: 1px solid var(--mineru-border) !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.gradio-container button.secondary:hover,
+.gradio-container .gr-button.secondary:hover,
+.gradio-container .btn-secondary:hover,
+.gradio-container button[variant="stop"]:hover {
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 3d. Small buttons */
+.gradio-container button.small,
+.gradio-container .sm-btn {
+    padding: 5px 12px !important;
+    font-size: 12px !important;
+}
+
+/* ================================================================
+   4. MINERU SHELL & WORKSPACE
+   ================================================================ */
+.mineru-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    color: var(--mineru-text-primary);
+    background: var(--mineru-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mineru-workspace-row {
+    align-items: stretch;
+    gap: 0 !important;
+    background: transparent;
+    border-radius: 0 !important;
+    overflow: hidden;
+    border: none !important;
+}
+
+/* ================================================================
+   5. PANEL BASE
+   ================================================================ */
+.mineru-sidebar-column,
+.mineru-upload-pane,
+.mineru-result-pane {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transition: none !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    align-self: stretch !important;
+}
+
+/* ================================================================
+   6. LEFT SIDEBAR
+   ================================================================ */
+.mineru-sidebar-column {
+    position: relative;
+    top: auto;
+    align-self: stretch;
+    max-width: var(--mineru-sidebar-width) !important;
+    min-width: var(--mineru-sidebar-width) !important;
+    width: var(--mineru-sidebar-width) !important;
+    background: var(--mineru-sidebar-bg) !important;
+    border-right: 1px solid var(--mineru-border) !important;
+    border-radius: 0 !important;
+    padding: 0 14px 14px 14px !important;
+    padding-top: 0 !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Reset nested components inside sidebar */
+.gradio-container .mineru-sidebar-column .gr-panel,
+.gradio-container .mineru-sidebar-column [data-testid="panel"],
+.gradio-container .mineru-sidebar-column .block,
+.gradio-container .mineru-sidebar-column .gr-form,
+.gradio-container .mineru-sidebar-column .gr-group,
+.gradio-container .mineru-sidebar-column .form,
+.gradio-container .mineru-sidebar-column .group {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Brand header area */
+.mineru-sidebar-brand-wrap {
+    margin: 0 0 20px 0 !important;
+    padding: 22px 4px 18px 4px !important;
+    border-bottom: 1px solid var(--mineru-border-light);
+}
+
+.mineru-sidebar-brand-wrap .html-container,
+.mineru-sidebar-brand-wrap .prose {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+}
+
+.mineru-sidebar-brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    color: var(--mineru-accent);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.1;
+}
+
+.mineru-sidebar-brand::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    border-radius: 9px;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3Cline x1='16' y1='13' x2='8' y2='13'/%3E%3Cline x1='16' y1='17' x2='8' y2='17'/%3E%3Cpolyline points='10 9 9 9 8 9'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3Cline x1='16' y1='13' x2='8' y2='13'/%3E%3Cline x1='16' y1='17' x2='8' y2='17'/%3E%3Cpolyline points='10 9 9 9 8 9'/%3E%3C/svg%3E");
+    mask-size: 18px 18px;
+    -webkit-mask-size: 18px 18px;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.32);
+}
+
+/* Hide backend / option groups in sidebar */
+.mineru-sidebar-column .mineru-backend-select,
+.mineru-sidebar-column [data-testid="dropdown"] {
+    display: none !important;
+}
+
+.mineru-sidebar-column .gr-group.mineru-client-options {
+    display: none !important;
+}
+
+/* ---- File list ---- */
+.mineru-file-list-wrap {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+}
+
+.mineru-file-list-wrap .html-container,
+.mineru-file-list-wrap .prose {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+}
+
+.mineru-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 6px;
+}
+
+.mineru-file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: var(--mineru-radius-sm);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.mineru-file-item:hover {
+    background: var(--mineru-accent-soft);
+    border-color: rgba(79, 70, 229, 0.10);
+}
+
+.mineru-file-item.is-active {
+    background: var(--mineru-accent-soft);
+    border-color: rgba(79, 70, 229, 0.28);
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.10);
+}
+
+/* File type badge */
+.mineru-file-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.mineru-file-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.mineru-file-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mineru-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.mineru-file-size {
+    font-size: 11px;
+    color: var(--mineru-text-tertiary);
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+/* ================================================================
+   7. UPLOAD AREA
+   ================================================================ */
+
+/* Hide upload component label */
+.mineru-upload-file label[data-testid="block-label"],
+.gradio-container .mineru-upload-file .block-label {
+    display: none !important;
+}
+
+/* Upload file component: auto height, drop zone provides empty-state height */
+.mineru-upload-file {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: hidden !important;
+}
+
+/* Compact height after a file is uploaded (class added via JS) */
+.mineru-upload-file.mineru-upload-has-file {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.mineru-upload-file.mineru-upload-has-file button,
+.mineru-upload-file.mineru-upload-has-file [data-testid="drop-zone"] {
+    display: none !important;
+}
+
+/* Upload pane — top-aligned content */
+.mineru-upload-pane {
+    min-width: 300px !important;
+    background: var(--mineru-bg-white) !important;
+    border: none !important;
+    border-right: 1px solid var(--mineru-border) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    padding: 8px 0 0 0 !important;
+    position: relative !important;
+}
+
+/* Direct children sizing in upload pane */
+.mineru-upload-pane > .block,
+.mineru-upload-pane > [data-testid="block"] {
+    flex: none !important;
+}
+
+/* Full-width blocks inside upload pane */
+.mineru-upload-pane > .block,
+.mineru-upload-pane > [data-testid="block"] {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 28px !important;
+}
+
+/* Preview areas: limited height and scroll internally */
+.mineru-upload-pane .gradio-pdf,
+.mineru-upload-pane [data-testid="pdf"],
+.mineru-upload-pane .mineru-office-preview-html {
+    max-height: var(--mineru-preview-content-height) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: auto !important;
+    flex: none !important;
+    margin: 12px 28px 0 28px !important;
+}
+
+/* Hide backend/options in upload pane */
+.mineru-upload-pane .mineru-backend-select,
+.mineru-upload-pane [data-testid="dropdown"] {
+    display: none !important;
+}
+
+.mineru-upload-pane .gr-group.mineru-client-options,
+.mineru-upload-pane .mineru-advanced-open,
+.mineru-upload-pane .gr-group {
+    display: none !important;
+}
+
+/* Drop zone — compact dashed border area */
+.mineru-upload-pane .mineru-upload-file .drop-zone,
+.mineru-upload-pane .mineru-upload-file [data-testid="drop-zone"],
+.mineru-upload-file .drop-zone,
+.mineru-upload-file [data-testid="drop-zone"],
+.gradio-container .mineru-upload-file .drop-zone,
+.gradio-container .mineru-upload-file [data-testid="drop-zone"] {
+    border: 2px dashed #c7d2fe !important;
+    border-radius: var(--mineru-radius-lg) !important;
+    background: linear-gradient(145deg, #fafbff 0%, #f0f4ff 100%) !important;
+    padding: 18px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-height: 96px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    transition:
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.16s ease !important;
+    position: relative !important;
+    margin-bottom: 6px !important;
+}
+
+/* Upload icon */
+.mineru-upload-file .drop-zone::before,
+.mineru-upload-file [data-testid="drop-zone"]::before,
+.gradio-container .mineru-upload-file .drop-zone::before,
+.gradio-container .mineru-upload-file [data-testid="drop-zone"]::before {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-radius: 14px;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' y1='3' x2='12' y2='15'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' y1='3' x2='12' y2='15'/%3E%3C/svg%3E");
+    mask-size: 22px 22px;
+    -webkit-mask-size: 22px 22px;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.10);
+}
+
+/* Drop zone hover state */
+.mineru-upload-file .drop-zone:hover,
+.mineru-upload-file [data-testid="drop-zone"]:hover,
+.gradio-container .mineru-upload-file .drop-zone:hover,
+.gradio-container .mineru-upload-file [data-testid="drop-zone"]:hover {
+    border-color: var(--mineru-accent) !important;
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%) !important;
+    box-shadow:
+        0 6px 24px rgba(79, 70, 229, 0.14),
+        0 0 0 4px rgba(79, 70, 229, 0.07) !important;
+    transform: translateY(-3px);
+}
+
+/* Drop zone drag-over */
+.mineru-upload-file .drop-zone.drag-over,
+.mineru-upload-file [data-testid="drop-zone"].drag-over {
+    border-color: var(--mineru-accent-hover) !important;
+    background: rgba(79, 70, 229, 0.09) !important;
+    box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.14) !important;
+    transform: translateY(-2px);
+}
+
+/* File preview reset */
+.mineru-upload-file .file-preview,
+.mineru-upload-file [data-testid="file-preview"] {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Prevent filename truncation */
+.mineru-upload-file .file-preview .file-name,
+.mineru-upload-file [data-testid="file-preview"] .file-name,
+.mineru-upload-file .file-preview .name,
+.mineru-upload-file [data-testid="file-preview"] .name,
+.mineru-upload-file .file-preview .flex.flex-col,
+.mineru-upload-file [data-testid="file-preview"] .flex.flex-col {
+    overflow: visible !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* Full-width preview rows */
+.mineru-upload-file .file-preview .flex.gap-2,
+.mineru-upload-file [data-testid="file-preview"] .flex.gap-2,
+.mineru-upload-file .file-preview > div,
+.mineru-upload-file [data-testid="file-preview"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* File meta info */
+.mineru-upload-file .file-preview .meta,
+.mineru-upload-file .file-preview .text-sm,
+.mineru-upload-file [data-testid="file-preview"] .meta,
+.mineru-upload-file [data-testid="file-preview"] .text-sm {
+    font-size: 11px !important;
+    color: var(--mineru-text-secondary) !important;
+}
+
+/* Hide remove button */
+.mineru-upload-file .file-preview button,
+.mineru-upload-file [data-testid="file-preview"] button,
+.mineru-upload-file .file-preview .icon-button,
+.mineru-upload-file [data-testid="file-preview"] .icon-button,
+.mineru-upload-file .file-preview [aria-label="Remove File"],
+.mineru-upload-file [data-testid="file-preview"] [aria-label="Remove File"],
+.mineru-upload-file .file-preview svg[viewBox],
+.mineru-upload-file [data-testid="file-preview"] svg[viewBox] {
+    display: none !important;
+}
+
+/* Compact file preview */
+.mineru-upload-file .file-preview,
+.mineru-upload-file [data-testid="file-preview"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 8px 0 !important;
+    min-height: auto !important;
+}
+
+/* Filename full width */
+.mineru-upload-file .file-preview .file-name,
+.mineru-upload-file [data-testid="file-preview"] .file-name {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--mineru-text-primary) !important;
+    white-space: normal !important;
+    word-break: break-all !important;
+    overflow: visible !important;
+}
+
+/* Example files */
+#mineru-example-files label[data-testid="block-label"],
+#mineru-example-files [data-testid="block-label"],
+#mineru-example-files .label {
+    display: none !important;
+}
+
+.mineru-examples-panel,
+.block.mineru-examples-panel {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#mineru-example-files {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.gradio-container .mineru-examples-panel .examples {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* ================================================================
+   8. ACTION BUTTONS — Convert / Clear
+   ================================================================ */
+.mineru-actions {
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    margin-top: 8px !important;
+    padding: 0 !important;
+}
+
+.mineru-actions > * {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+}
+
+.mineru-actions button {
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 12px 10px !important;
+    font-size: 15px !important;
+    border-radius: var(--mineru-radius) !important;
+    letter-spacing: 0.01em;
+}
+
+/* Primary (convert) — indigo gradient */
+.mineru-actions button.primary,
+.mineru-actions button[class*="primary"],
+.gradio-container .mineru-actions button:first-child {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--mineru-radius) !important;
+    font-weight: 700 !important;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.14s ease !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.22) !important;
+}
+
+.mineru-actions button.primary:hover,
+.mineru-actions button[class*="primary"]:hover,
+.gradio-container .mineru-actions button:first-child:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
+    box-shadow:
+        0 6px 20px rgba(79, 70, 229, 0.32),
+        0 2px 8px rgba(79, 70, 229, 0.18) !important;
+    transform: translateY(-1px);
+}
+
+.mineru-actions button.primary:active,
+.gradio-container .mineru-actions button:first-child:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.26) !important;
+}
+
+/* Secondary (clear) — outlined */
+.mineru-actions button.secondary,
+.mineru-actions button.clear-button,
+.gradio-container .mineru-actions button:nth-child(2) {
+    background: var(--mineru-bg-white) !important;
+    color: var(--mineru-text-secondary) !important;
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius) !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.mineru-actions button.secondary:hover,
+.mineru-actions button.clear-button:hover,
+.gradio-container .mineru-actions button:nth-child(2):hover {
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: var(--mineru-text-primary) !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+.mineru-advanced-open,
+.mineru-advanced-open button {
+    min-width: 0 !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+}
+
+/* ================================================================
+   9. RESULT PANE
+   ================================================================ */
+/* Right panel: vertical flex; no bottom padding so footer touches the bottom */
+.mineru-result-pane,
+.mineru-result-pane > .form,
+.mineru-result-pane > [data-testid="form"],
+.mineru-result-pane > .panel,
+.mineru-result-pane > [data-testid="panel"] {
+    min-width: 300px !important;
+    background: var(--mineru-bg-white) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 14px 14px 0 14px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    gap: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+/* Right panel layout:
+   - top: markdown tabs (preview) fills remaining space
+   - middle: download file compact
+   - bottom: output directory compact, stuck to bottom */
+.mineru-result-pane .mineru-markdown-tabs,
+.mineru-result-pane .mineru-markdown-tabs > .tabs,
+.mineru-result-pane .mineru-markdown-tabs > [class*="tabs"] {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 0 !important;
+}
+
+/* Tab navigation must not stretch */
+.mineru-result-pane .mineru-markdown-tabs > [role="tablist"],
+.mineru-result-pane .mineru-markdown-tabs .tab-nav {
+    flex: 0 0 auto !important;
+}
+
+/* Tab content container fills the tabs area */
+.mineru-result-pane .mineru-markdown-tabs .tab-content {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Only the active tab panel scrolls vertically when content overflows */
+.mineru-result-pane .mineru-markdown-tabs .tabitem.selected,
+.mineru-result-pane .mineru-markdown-tabs [role="tabpanel"].selected {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Hide result pane labels */
+.mineru-result-pane label[data-testid="block-label"],
+.gradio-container .mineru-result-pane .block-label,
+.gradio-container .mineru-result-pane [data-testid="block-label"] {
+    display: none !important;
+}
+
+/* PDF preview in result pane */
+.gradio-container .mineru-result-pane .gradio-pdf,
+.gradio-container .mineru-result-pane [data-testid="pdf"] {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    max-height: var(--mineru-pdf-page-height) !important;
+}
+
+.mineru-result-pane .pdf-canvas {
+    height: var(--mineru-pdf-page-height) !important;
+    max-height: var(--mineru-pdf-page-height) !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    overflow: auto !important;
+}
+
+.mineru-result-pane .pdf-canvas canvas {
+    max-width: 100% !important;
+    max-height: var(--mineru-pdf-page-height) !important;
+    object-fit: contain;
+}
+
+.mineru-result-pane .button-row {
+    flex: none !important;
+}
+
+/* Office preview in result pane */
+.mineru-result-pane .mineru-office-preview-html {
+    max-height: var(--mineru-preview-content-height) !important;
+    overflow: hidden !important;
+}
+
+.mineru-result-pane .mineru-office-preview-html .html-container {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.mineru-result-pane .mineru-office-preview-html .prose {
+    height: 100% !important;
+    max-width: none !important;
+}
+
+/* ================================================================
+   11. TABS — Underline-style tabs
+   ================================================================ */
+
+/* Tab navigation bar */
+.gradio-container .mineru-result-tabs .tab-nav,
+.gradio-container .mineru-markdown-tabs .tab-nav,
+.gradio-container .gr-tabs .tab-nav,
+.gradio-container .tab-nav {
+    display: flex !important;
+    gap: 0 !important;
+    border-bottom: 1px solid var(--mineru-border) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Tab button base */
+.gradio-container .mineru-result-tabs .tab-nav button,
+.gradio-container .mineru-markdown-tabs .tab-nav button,
+.gradio-container .gr-tabs .tab-nav button,
+.gradio-container .tab-nav button {
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    background: transparent !important;
+    color: var(--mineru-text-secondary) !important;
+    font-weight: 500 !important;
+    font-size: 13.5px !important;
+    padding: 11px 18px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transition:
+        color 0.18s ease,
+        border-color 0.18s ease !important;
+    background-image: none !important;
+    letter-spacing: 0.01em;
+}
+
+/* Tab hover */
+.gradio-container .mineru-result-tabs .tab-nav button:hover,
+.gradio-container .mineru-markdown-tabs .tab-nav button:hover,
+.gradio-container .gr-tabs .tab-nav button:hover,
+.gradio-container .tab-nav button:hover {
+    color: var(--mineru-text-primary) !important;
+    border-bottom-color: var(--mineru-border) !important;
+    background: transparent !important;
+}
+
+/* Tab active — indigo underline */
+.gradio-container .mineru-result-tabs .tab-nav button.selected,
+.gradio-container .mineru-markdown-tabs .tab-nav button.selected,
+.gradio-container .gr-tabs .tab-nav button.selected,
+.gradio-container .tab-nav button.selected,
+.gradio-container .tab-nav button[aria-selected="true"] {
+    color: var(--mineru-accent) !important;
+    border-bottom-color: var(--mineru-accent) !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+}
+
+/* Tab content area */
+.gradio-container .mineru-result-tabs .tab-content,
+.gradio-container .mineru-markdown-tabs .tab-content,
+.gradio-container .tab-content {
+    border: none !important;
+    background: transparent !important;
+    padding: 14px 0 0 0 !important;
+}
+
+/* ================================================================
+   12. RESULT FILE — Download area
+   ================================================================ */
+.mineru-result-file {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-top: 8px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.mineru-result-file .empty {
+    display: none !important;
+}
+
+.gradio-container .mineru-result-file .gr-file,
+.gradio-container .mineru-result-file [data-testid="file"] {
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    background: var(--mineru-bg) !important;
+    padding: 8px 10px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    transition: border-color 0.18s ease !important;
+}
+
+.gradio-container .mineru-result-file .gr-file > *,
+.gradio-container .mineru-result-file [data-testid="file"] > * {
+    min-height: 0 !important;
+}
+
+/* ================================================================
+   13. HEADER
+   ================================================================ */
+.gradio-container .mineru-header-html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.gradio-container .mineru-header-html .html-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+}
+
+/* Gradio 6 header */
+.gradio-container .mineru-gradio6-header {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    border-bottom: none !important;
+    padding: 16px 24px 12px !important;
+    box-shadow: 0 2px 12px rgba(79, 70, 229, 0.18);
+}
+
+/* Hide Gradio default header */
+.gradio-container > .main > .header-bar,
+.gradio-container .gr-header {
+    display: none !important;
+}
+
+/* ================================================================
+   14. STATUS PANEL — Step-based progress
+   ================================================================ */
+.block.mineru-status-panel {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+}
+
+.mineru-upload-pane .block.mineru-status-panel {
+    margin-top: 8px;
+}
+
+.block.mineru-status-panel .html-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.block.mineru-status-panel .prose,
+.block.mineru-status-panel .status-steps-panel {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.status-steps-panel {
+    border: 1px solid var(--mineru-border);
+    border-radius: var(--mineru-radius);
+    padding: 18px 22px;
+    background: var(--mineru-status-panel-bg);
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.04),
+        0 1px 2px rgba(15, 23, 42, 0.02);
+    transition: box-shadow 0.22s ease;
+}
+
+.status-panel-title {
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--mineru-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    letter-spacing: -0.005em;
+}
+
+.status-progress-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--mineru-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Progress bar track */
+.status-progress-bar {
+    width: 100%;
+    height: 5px;
+    background: var(--mineru-border-light);
+    border-radius: 3px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+/* Progress bar fill */
+.status-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #6366f1);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Progress bar complete state */
+.status-progress-bar-fill.is-complete {
+    width: 100%;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+/* Steps grid */
+.status-steps-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+/* Individual step row */
+.status-step {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    color: var(--mineru-text-secondary);
+    font-size: 13px;
+    padding: 6px 8px;
+    border-radius: var(--mineru-radius-sm);
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+/* Status dot */
+.status-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    flex: none;
+    transition:
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+/* Done step — green */
+.status-step.is-done .status-dot {
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16);
+}
+
+.status-step.is-done {
+    color: var(--mineru-text-secondary);
+}
+
+/* Active step — indigo pulse */
+.status-step.is-active {
+    color: var(--mineru-text-primary);
+    font-weight: 700;
+    background: rgba(79, 70, 229, 0.04);
+}
+
+.status-step.is-active .status-dot {
+    background: var(--mineru-accent);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18);
+    animation: status-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18); }
+    50%       { box-shadow: 0 0 0 9px rgba(79, 70, 229, 0.06); }
+}
+
+/* Error step — red */
+.status-step.is-error .status-dot {
+    background: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
+}
+
+.status-step.is-error {
+    color: #dc2626;
+}
+
+/* Latest status log */
+.status-latest {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--mineru-status-latest-border);
+    color: var(--mineru-status-latest-text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* ================================================================
+   15. MARKDOWN TABS & CODE EDITORS
+   ================================================================ */
+.mineru-markdown-tabs .tab-nav {
+    border-bottom-color: var(--mineru-border);
+}
+
+/* Code editors should fill the tab panel and scroll internally */
+.mineru-result-pane .mineru-markdown-text,
+.mineru-result-pane .mineru-content-list-json {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mineru-result-pane .mineru-markdown-text .wrap,
+.mineru-result-pane .mineru-content-list-json .wrap,
+.mineru-result-pane .mineru-markdown-text .codemirror-wrapper,
+.mineru-result-pane .mineru-content-list-json .codemirror-wrapper {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mineru-result-pane .mineru-markdown-text textarea,
+.mineru-result-pane .mineru-content-list-json textarea,
+.mineru-result-pane .mineru-markdown-text .cm-editor,
+.mineru-result-pane .mineru-content-list-json .cm-editor {
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+}
+
+.mineru-result-pane .mineru-markdown-text .cm-scroller,
+.mineru-result-pane .mineru-content-list-json .cm-scroller {
+    overflow: auto !important;
+    height: 100% !important;
+}
+
+/* CodeMirror editor in result area */
+.gradio-container .mineru-markdown-text .cm-editor,
+.gradio-container .mineru-content-list-json .cm-editor {
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    background: var(--mineru-bg-white) !important;
+    transition: border-color 0.18s ease !important;
+}
+
+/* Markdown output area: fill the tab panel and scroll internally */
+.gradio-container .mineru-markdown-output,
+.mineru-result-pane .mineru-markdown-output {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+}
+
+.gradio-container .mineru-markdown-output .prose,
+.mineru-result-pane .mineru-markdown-output .prose {
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+/* ================================================================
+   16. ADVANCED OPTIONS POPOVER
+   ================================================================ */
+.mineru-advanced-popover {
+    position: fixed !important;
+    left: var(--mineru-popover-left, 276px) !important;
+    top: var(--mineru-popover-top, 360px) !important;
+    z-index: 1000 !important;
+    width: min(420px, calc(100vw - var(--mineru-popover-left, 276px) - 18px)) !important;
+    max-width: calc(100vw - 36px) !important;
+    padding: 1px !important;
+    border: 1px solid var(--mineru-popover-border) !important;
+    border-radius: var(--mineru-radius-lg) !important;
+    background: var(--mineru-popover-shell-bg) !important;
+    box-shadow: var(--mineru-popover-shadow) !important;
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    overflow: hidden !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-6px) scale(0.98) !important;
+    transform-origin: left center !important;
+    transition:
+        opacity 160ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 160ms cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0s linear 160ms !important;
+}
+
+body.mineru-advanced-popover-open .gradio-container .contain .mineru-advanced-popover,
+body.mineru-advanced-popover-open .mineru-advanced-popover {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+    transition:
+        opacity 160ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 160ms cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0s linear 0s !important;
+}
+
+.mineru-advanced-popover::before {
+    display: none !important;
+}
+
+.mineru-advanced-card {
+    width: 100% !important;
+    max-height: min(70vh, 620px) !important;
+    margin: 0 !important;
+    padding: 18px !important;
+    overflow: auto !important;
+    border: 0 !important;
+    border-radius: 13px !important;
+    background: var(--mineru-popover-card-bg) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset !important;
+}
+
+.mineru-advanced-popover .wrap,
+.mineru-advanced-popover .block {
+    min-width: 0 !important;
+}
+
+.mineru-advanced-popover .wrap,
+.mineru-advanced-popover .block,
+.mineru-advanced-popover .form,
+.mineru-advanced-popover .styler,
+.mineru-advanced-popover .gr-group {
+    overflow: visible !important;
+}
+
+.mineru-advanced-popover [data-testid="status-tracker"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Hidden option groups (shown conditionally via body class) */
+.mineru-client-options,
+.mineru-image-analysis-option,
+.mineru-ocr-language-options {
+    display: none !important;
+}
+
+body.mineru-show-client-options .gradio-container .contain .mineru-client-options.mineru-client-options {
+    display: flex !important;
+}
+
+body.mineru-show-image-analysis .gradio-container .contain .mineru-image-analysis-option.mineru-image-analysis-option {
+    display: block !important;
+}
+
+body.mineru-show-ocr-language .gradio-container .contain .mineru-ocr-language-options.mineru-ocr-language-options {
+    display: flex !important;
+}
+
+body.mineru-hide-force-ocr .gradio-container .contain .mineru-force-ocr-option.mineru-force-ocr-option {
+    display: none !important;
+}
+
+body.mineru-hide-hybrid-effort .gradio-container .contain .mineru-hybrid-effort-option.mineru-hybrid-effort-option {
+    display: none !important;
+}
+
+.mineru-advanced-popover ul.options {
+    border-radius: var(--mineru-radius-sm) !important;
+    box-shadow: var(--mineru-popover-dropdown-shadow) !important;
+}
+
+/* ================================================================
+   17. OFFICE PREVIEW
+   ================================================================ */
+.office-preview-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+    min-height: var(--mineru-preview-content-height);
+}
+
+.office-preview-notice {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 24px;
+    border: 1px solid rgba(79, 70, 229, 0.22);
+    border-radius: var(--mineru-radius-sm);
+    padding: 12px 14px;
+    background: rgba(79, 70, 229, 0.05);
+    transition: background 0.18s ease;
+}
+
+.office-preview-notice.is-dismissed {
+    display: none !important;
+}
+
+.office-preview-copy {
+    min-width: 0;
+}
+
+.office-preview-copy strong,
+.office-preview-copy > span {
+    display: block;
+}
+
+.office-preview-copy > span {
+    margin-top: 4px;
+    color: var(--mineru-text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.office-preview-actions {
+    display: grid;
+    grid-template-columns: 100px;
+    grid-auto-rows: 30px;
+    align-items: stretch;
+    justify-items: stretch;
+    justify-content: end;
+    flex: none;
+    gap: 6px;
+}
+
+.office-preview-actions button {
+    display: inline-flex;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    border: 1px solid rgba(79, 70, 229, 0.26) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    padding: 0 8px !important;
+    background: rgba(79, 70, 229, 0.06) !important;
+    color: var(--mineru-text-primary) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    cursor: pointer;
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease;
+}
+
+.office-preview-actions button > span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+.office-preview-actions button:hover {
+    background: rgba(79, 70, 229, 0.14) !important;
+    border-color: rgba(79, 70, 229, 0.34) !important;
+}
+
+.office-preview-source-link {
+    margin-top: 8px;
+    min-width: 0;
+    color: var(--mineru-text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.office-preview-source-link a {
+    color: var(--mineru-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.15s ease;
+}
+
+.office-preview-source-link a:hover {
+    opacity: 0.8;
+}
+
+.office-preview-frame {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    border: 1px solid var(--mineru-border);
+    border-radius: var(--mineru-radius-sm);
+    background: var(--mineru-bg);
+}
+
+/* ================================================================
+   18. ADDITIONAL GRADIO COMPONENT OVERRIDES
+   ================================================================ */
+
+/* 18a. Hide status tracker */
+.gradio-container .gr-status-tracker,
+.gradio-container [data-testid="status-tracker"] {
+    display: none !important;
+}
+
+/* 18b. Prose global */
+.gradio-container .prose {
+    max-width: none !important;
+}
+
+/* 18c. HTML container padding reset */
+.gradio-container .html-container {
+    padding: 0 !important;
+}
+
+/* 18d. File component reset */
+.gradio-container .gr-file,
+.gradio-container [data-testid="file"] {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* 18e. Slider background reset */
+.gradio-container .gr-slider .gr-slider-container,
+.gradio-container .gr-range-input input[type="range"] {
+    background: transparent !important;
+}
+
+/* 18f. Examples label hide */
+.gradio-container .gr-examples .label,
+.gradio-container [data-testid="examples"] .label {
+    display: none !important;
+}
+
+/* 18g. PDF component reset */
+.gradio-container .gradio-pdf {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* 18h. Code component */
+.gradio-container .gr-code,
+.gradio-container .gr-code-editor {
+    border: 1px solid var(--mineru-border) !important;
+    border-radius: var(--mineru-radius-sm) !important;
+    box-shadow: none !important;
+    transition: border-color 0.18s ease !important;
+}
+
+/* ================================================================
+   19. SIDEBAR SPECIFIC COMPONENT STYLES
+   ================================================================ */
+
+/* Sidebar slider */
+.gradio-container .mineru-sidebar-column .gr-slider {
+    padding: 8px 0 !important;
+}
+
+.gradio-container .mineru-sidebar-column .gr-slider label {
+    display: none !important;
+}
+
+/* Sidebar hidden groups */
+.gradio-container .mineru-sidebar-column [data-testid="group"] {
+    display: none !important;
+}
+
+/* Sidebar checkbox clean */
+.gradio-container .mineru-sidebar-column .gr-checkbox {
+    border: none !important;
+    background: transparent !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+}
+
+/* ================================================================
+   20. RESPONSIVE
+   ================================================================ */
+@media (max-width: 900px) {
+    .mineru-sidebar-column {
+        position: static !important;
+        max-width: none !important;
+        min-width: auto !important;
+        width: auto !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--mineru-border) !important;
+    }
+
+    .mineru-workspace-row {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    .mineru-upload-pane,
+    .mineru-result-pane {
+        min-width: 100% !important;
+        border-left: none !important;
+        border-top: 1px solid var(--mineru-border) !important;
+    }
+
+    .status-steps-list {
+        grid-template-columns: 1fr;
+    }
+
+    .mineru-advanced-popover {
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-6px) scale(0.98) !important;
+        width: min(420px, calc(100vw - 36px)) !important;
+    }
+
+    body.mineru-advanced-popover-open .mineru-advanced-popover {
+        transform: translateX(-50%) translateY(0) scale(1) !important;
+    }
+}
+
+/* ================================================================
+   21. URL/HTML TAB & OUTPUT DIRECTORY
+   ================================================================ */
+
+/* URL/HTML tab pane */
+.mineru-upload-tabs {
+    width: 100% !important;
+}
+
+.mineru-upload-tabs .tab-nav button {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.mineru-upload-tabs .tab-nav button::before,
+.mineru-upload-tabs .tab-nav button::after {
+    display: none !important;
+    content: none !important;
+}
+
+.mineru-upload-tabs .tab-content {
+    padding-top: 12px !important;
+}
+
+.mineru-url-input textarea {
+    min-height: 120px !important;
+}
+
+.mineru-html-file .drop-zone,
+.mineru-html-file [data-testid="drop-zone"] {
+    min-height: 120px !important;
+    padding: 36px 24px !important;
+}
+
+/* Output directory panel: compact, auto-height, stuck to the bottom */
+.mineru-output-dir-html {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.mineru-output-dir {
+    border: 1px solid var(--mineru-border);
+    border-radius: var(--mineru-radius-sm);
+    background: var(--mineru-bg);
+    padding: 8px 10px;
+    user-select: text;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.mineru-output-dir-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mineru-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+    flex: none !important;
+}
+
+.mineru-output-dir-path {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--mineru-text-primary);
+    word-break: break-all;
+    line-height: 1.4;
+    cursor: context-menu;
+    flex: none !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.mineru-output-dir-path:hover {
+    color: var(--mineru-accent);
+}
+
+/* Context menu for output directory */
+.mineru-output-dir-menu {
+    position: fixed;
+    z-index: 9999;
+    display: none;
+    min-width: 160px;
+    background: var(--mineru-bg-white);
+    border: 1px solid var(--mineru-border);
+    border-radius: var(--mineru-radius-sm);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+    padding: 6px 0;
+    font-size: 13px;
+}
+
+.mineru-output-dir-menu.is-visible {
+    display: block;
+}
+
+.mineru-output-dir-menu-item {
+    padding: 9px 14px;
+    color: var(--mineru-text-primary);
+    cursor: pointer;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+}
+
+.mineru-output-dir-menu-item:hover {
+    background: var(--mineru-accent-soft);
+    color: var(--mineru-accent);
+}
+
+body.dark .mineru-output-dir-menu {
+    background: var(--mineru-panel);
+    border-color: var(--mineru-border);
+}
+
+/* Hidden open-directory helper components */
+.mineru-output-dir-target,
+.mineru-open-dir-btn {
+    display: none !important;
+}
+
+/* ================================================================ */

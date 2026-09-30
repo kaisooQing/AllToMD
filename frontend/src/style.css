@@ -1,0 +1,105 @@
+:root {
+  --mineru-accent: #0284c7;
+  --mineru-accent-hover: #0369a1;
+  --mineru-accent-soft: #e0f2fe;
+  --mineru-bg: #f8fafc;
+  --mineru-bg-white: #ffffff;
+  --mineru-text-primary: #0f172a;
+  --mineru-text-secondary: #64748b;
+  --mineru-text-tertiary: #94a3b8;
+  --mineru-border: #e2e8f0;
+  --mineru-border-light: #f1f5f9;
+  --mineru-radius: 10px;
+  --mineru-radius-sm: 8px;
+  --mineru-sidebar-width: 300px;
+  --mineru-header-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Microsoft YaHei UI", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: var(--mineru-text-primary);
+  background: var(--mineru-bg);
+}
+
+/* Element Plus overrides */
+.el-button {
+  border-radius: var(--mineru-radius-sm);
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--mineru-accent);
+  --el-button-border-color: var(--mineru-accent);
+  --el-button-hover-bg-color: var(--mineru-accent-hover);
+  --el-button-hover-border-color: var(--mineru-accent-hover);
+}
+
+.el-tabs__item.is-active {
+  color: var(--mineru-accent);
+}
+
+.el-tabs__active-bar {
+  background-color: var(--mineru-accent);
+}
+
+.el-input__wrapper,
+.el-textarea__inner {
+  border-radius: var(--mineru-radius-sm);
+}
+
+.el-upload-dragger {
+  border-radius: var(--mineru-radius);
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: var(--mineru-radius-sm);
+}
+
+.markdown-body pre {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: var(--mineru-radius-sm);
+  overflow-x: auto;
+}
+
+.markdown-body code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12px;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  table-layout: auto;
+  margin: 12px 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--mineru-border);
+  padding: 8px 12px;
+  min-width: 120px;
+  max-width: 420px;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.markdown-body th {
+  background: var(--mineru-accent-soft);
+}

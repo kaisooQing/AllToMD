@@ -1,0 +1,77 @@
+﻿<html><head>
+<style>
+  .block.mineru-header-html,
+  .block.mineru-header-html .html-container,
+  .block.mineru-header-html .prose {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+  a {
+    text-decoration: none;
+  }
+  .mineru-gradio6-header {
+    /* reserved for Gradio 6 compatibility */
+  }
+  .mineru-demo-header,
+  .mineru-demo-header h1,
+  .mineru-demo-header h1 *,
+  .mineru-demo-header p,
+  .mineru-demo-header p *,
+  .mineru-demo-header .AllToMD-powered-by,
+  .mineru-demo-header .AllToMD-powered-by * {
+    color: #ffffff !important;
+  }
+</style></head>
+
+<body>
+  <div class="mineru-demo-header{{HEADER_GRADIO_VERSION_CLASS}}" style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      padding: 16px 24px 12px;
+      gap: 6px;
+      border-radius: 0;
+    ">
+
+    <!-- Title -->
+    <h1 style="
+        font-size: 26px;
+        font-weight: 700;
+        color: #ffffff !important;
+        margin: 0;
+        letter-spacing: -0.5px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+      ">
+      {{HEADER_TITLE}}
+    </h1>
+
+    <!-- Subtitle -->
+    <p style="
+        margin: 0;
+        line-height: 1.4;
+        font-size: 13px;
+        color: #ffffff !important;
+        opacity: 0.85;
+        max-width: 640px;
+      ">
+      {{HEADER_SUBTITLE}}
+    </p>
+
+    <!-- Powered-by line -->
+    <span class="AllToMD-powered-by" style="
+        display: inline-block;
+        margin-top: 2px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.55) !important;
+        letter-spacing: 0.3px;
+      ">
+      Powered by MinerU
+    </span>
+
+  </div>
+</body></html>

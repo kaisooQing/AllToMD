@@ -1,0 +1,75 @@
+# ===========================
+# AllToMD 项目 .gitignore
+# ===========================
+
+# --- Python 环境 & 缓存 ---
+.env/
+.venv/
+env/
+venv/
+
+# --- AI 模型缓存 ---
+model_cache/
+
+# --- Playwright 浏览器二进制 ---
+ms-playwright/
+
+# --- 绿色版分发 & 压缩包 ---
+allToMD/
+allToMD.7z
+*.7z
+
+# --- 内部文档（非项目代码） ---
+sync_green.py
+王小氢-作者标识规范.md
+
+# --- Node.js ---
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+*.local
+
+# --- Python 编译缓存 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- MinerU 构建产物 ---
+MinerU/mineru.egg-info/
+MinerU/build/
+MinerU/dist/
+MinerU/output/
+
+# --- MinerU 原始 demo/projects（非本项目核心） ---
+MinerU/projects/
+MinerU/demo/
+
+# --- 备份文件 ---
+*.bak
+*.bak.*
+*.bak.agent
+
+# --- 上传临时目录 ---
+.uploads/
+.trae-html-share-packages/
+
+# --- 日志 ---
+*.log
+logs/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.sw?
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+Thumbs.db
+
+# --- 操作系统 ---
+desktop.ini
+ehthumbs.db
