@@ -25,6 +25,14 @@
 
 <br/>
 
+> ## 下载绿色版
+> 
+> 无需配置环境，下载解压即可使用：[Releases v1.0.0](https://github.com/kaisooQing/AllToMD/releases/tag/v1.0.0)
+> 
+> 源码运行请参考下方[快速开始](#-快速开始)。
+
+<br/>
+
 ## ✨ 功能特性
 
 <table>
